@@ -7,7 +7,7 @@
 #All rights reserved, the intellectual property of KYRA MEIER
 #contact kyraprmeier@gmail.com
 #09/23/2024
-#for Apple Girl Zine (2024), Charlotte Alarie
+#for Apple Girl Zine (2024)
 
 total_score = 0 #initiate total score
 welcome_input = input("Hello there! Welcome to this lyric quiz created exclusively for Apple Girl Zine subscribers. The category is: Apple (2024) by Charli XCX. Are you ready to begin?") #send welcome message and initiate quiz
