@@ -22,6 +22,7 @@
             <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
             <input type="text" id="q1_input">
             <button onclick="check_question1()">Submit</button>
+            <p id="q1_feedback"></p> <!-- Placeholder for feedback for Question 1 -->
         </div>
 
         <!-- Question 2 -->
@@ -29,6 +30,7 @@
             <p>Question 2 of 3 (medium): What color did the apple turn?</p>
             <input type="text" id="q2_input">
             <button onclick="check_question2()">Submit</button>
+            <p id="q2_feedback"></p> <!-- Placeholder for feedback for Question 2 -->
         </div>
 
         <!-- Question 3 -->
@@ -36,6 +38,7 @@
             <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
             <input type="text" id="q3_input">
             <button onclick="check_question3()">Submit</button>
+            <p id="q3_feedback"></p> <!-- Placeholder for feedback for Question 3 -->
         </div>
 
         <!-- Final result -->
@@ -52,6 +55,8 @@
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
                 document['question1'].style.display = 'block'
+                document['question2'].style.display = 'block'
+                document['question3'].style.display = 'block'
                 document['welcome_input'].style.display = 'none'
                 document['start_button'].style.display = 'none'
                 document['start_message'].text = ""  # Clear any "Bye bye" message
@@ -63,24 +68,20 @@
             global total_score
             question_1_input = document['q1_input'].value.strip().lower()
             if question_1_input == "no":
-                document['start_message'].text = "Correct!"
+                document['q1_feedback'].text = "Correct!"
                 total_score += 1
             else:
-                document['start_message'].text = "Incorrect :("
-            document['question1'].style.display = 'none'
-            document['question2'].style.display = 'block'  # Show question 2
+                document['q1_feedback'].text = "Incorrect :("
 
         # Function to check question 2
         def check_question2():
             global total_score
             question_2_input = document['q2_input'].value.strip().lower()
             if question_2_input in ["yellow and green", "yellow or green", "yellow green", "green yellow", "yellow", "green"]:
-                document['start_message'].text = "Correct!"
+                document['q2_feedback'].text = "Correct!"
                 total_score += 1
             else:
-                document['start_message'].text = "Incorrect :("
-            document['question2'].style.display = 'none'
-            document['question3'].style.display = 'block'  # Show question 3
+                document['q2_feedback'].text = "Incorrect :("
 
         # Function to check question 3
         def check_question3():
@@ -98,14 +99,13 @@
                 "apples coming before"
             ]
             if question_3_input in accepted_responses:
-                document['start_message'].text = "Correct!"
+                document['q3_feedback'].text = "Correct!"
                 total_score += 1
             elif question_3_input == "you think you just fell out of a coconut tree? you exist in the context of all in which you live and what came before you":
-                document['start_message'].text = "Ur so cheeky >;) Take an extra point!"
+                document['q3_feedback'].text = "Ur so cheeky >;) Take an extra point!"
                 total_score += 2
             else:
-                document['start_message'].text = "Incorrect :("
-            document['question3'].style.display = 'none'
+                document['q3_feedback'].text = "Incorrect :("
             show_result()
 
         # Function to show the final result based on the score
@@ -123,29 +123,17 @@
             document['result'].text = result_output
             document['result'].style.display = 'block'
 
-        # Add event listener to enable starting quiz by pressing Enter/Return
-        def handle_keydown(event):
+        # Event listener to trigger start quiz or submit questions using Enter/Return key
+        def handle_keydown(event, action):
             if event.keyCode == 13:  # 13 is the Enter key
-                start_quiz()
-
-        # Add keydown event listeners for all inputs
-        def handle_keydown_q1(event):
-            if event.keyCode == 13:  # 13 is the Enter key
-                check_question1()
-
-        def handle_keydown_q2(event):
-            if event.keyCode == 13:  # 13 is the Enter key
-                check_question2()
-
-        def handle_keydown_q3(event):
-            if event.keyCode == 13:  # 13 is the Enter key
-                check_question3()
+                action()
 
         # Bind Enter key events to input fields
-        document['welcome_input'].bind('keydown', handle_keydown)  # Bind Enter key event to the welcome input field
-        document['q1_input'].bind('keydown', handle_keydown_q1)    # Bind Enter key event to Question 1 input field
-        document['q2_input'].bind('keydown', handle_keydown_q2)    # Bind Enter key event to Question 2 input field
-        document['q3_input'].bind('keydown', handle_keydown_q3)    # Bind Enter key event to Question 3 input field
+        document['welcome_input'].bind('keydown', lambda e: handle_keydown(e, start_quiz))  # Bind Enter key for starting the quiz
+        document['q1_input'].bind('keydown', lambda e: handle_keydown(e, check_question1))   # Bind Enter key for Question 1
+        document['q2_input'].bind('keydown', lambda e: handle_keydown(e, check_question2))   # Bind Enter key for Question 2
+        document['q3_input'].bind('keydown', lambda e: handle_keydown(e, check_question3))   # Bind Enter key for Question 3
     </script>
 </body>
 </html>
+
