@@ -120,6 +120,13 @@
             
             document['result'].text = result_output
             document['result'].style.display = 'block'
+
+        # Add event listener to enable starting quiz by pressing Enter/Return
+        def handle_keydown(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                start_quiz()
+
+        document['welcome_input'].bind('keydown', handle_keydown)  # Bind Enter key event to the input field
     </script>
 </body>
 </html>
