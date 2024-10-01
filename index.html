@@ -50,9 +50,7 @@
         def start_quiz():
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
-                document['question1'].style.display = 'block'
-                document['question2'].style.display = 'block'
-                document['question3'].style.display = 'block'
+                document['question1'].style.display = 'block'  # Show Question 1
                 document['welcome_input'].style.display = 'none'
                 document['start_button'].style.display = 'none'
                 document['start_message'].text = ""  # Clear any "Bye bye" message
@@ -68,6 +66,9 @@
                 total_score += 1
             else:
                 alert("Incorrect :(")
+            
+            document['question1'].style.display = 'none'  # Hide Question 1
+            document['question2'].style.display = 'block'  # Show Question 2
 
         # Function to check question 2
         def check_question2():
@@ -78,6 +79,9 @@
                 total_score += 1
             else:
                 alert("Incorrect :(")
+            
+            document['question2'].style.display = 'none'  # Hide Question 2
+            document['question3'].style.display = 'block'  # Show Question 3
 
         # Function to check question 3
         def check_question3():
@@ -102,6 +106,7 @@
                 total_score += 2
             else:
                 alert("Incorrect :(")
+            document['question3'].style.display = 'none'  # Hide Question 3
             show_result()
 
         # Function to show the final result based on the score
