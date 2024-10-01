@@ -5,14 +5,13 @@
     <title>Apple Girl Zine Lyric Quiz</title>
     <!-- Brython script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
-    <!-- Set font (Arial Narrow) -->
     <style>
         body {
             font-family: Arial Narrow;
             background-color: #8ACE00; /* Background color */
             color: #000000; /* Font color */
         }
-        
+
         input[type="text"] {
             font-family: Arial Narrow;
             color: #000000; /* Text color inside input box */
@@ -22,24 +21,18 @@
             width: 300px;
         }
 
-        input[type="text"]::placeholder {
-            color: #000000; /* Placeholder text color */
-        }
-
         h1, h2, p {
-            color: #000000; /* Ensure all text remains black */
+            color: #FFFFFF; /* Ensure all text remains white */
         }
 
         em {
-            color: #000000; /* Black for emphasis text */
-            font-size: 0.8em; /* Make the "Press enter/return to submit" text smaller */
-
+            color: #FFFFFF;
+            font-size: 0.8em;
         }
 
-        /* Styling the result output */
         #result {
-            font-size: 1.5em; /* Make the font slightly larger */
-            font-weight: normal; /* Ensure the text is not bolded */
+            font-size: 1.5em; /* Larger result font */
+            font-weight: normal;
         }
     </style>
 </head>
@@ -90,6 +83,7 @@
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
                 document['prompt'].style.display = 'none'  # Hide the prompt
+                document['start_message'].text = ""  # Clear "Bye bye" message if present
                 document['question1'].style.display = 'block'  # Show Question 1
                 document['welcome_input'].style.display = 'none'  # Hide welcome input
             else:
@@ -162,7 +156,7 @@
             document['result'].text = result_output
             document['result'].style.display = 'block'
             document['credits'].style.display = 'block'  # Show the credits
-        
+
         # Event listener to trigger start quiz or submit questions using Enter/Return key
         def handle_keydown(event, action):
             if event.keyCode == 13:  # 13 is the Enter key
