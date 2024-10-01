@@ -10,38 +10,44 @@
 <body onload="brython()">
     <h1>Welcome to the Lyric Quiz for Apple Girl Zine Subscribers!</h1>
     <p>Category: <strong>Apple (2024) by Charli XCX</strong></p>
-    <p id="welcome"></p>
 
-    <!-- Questions and input fields -->
     <div id="quiz">
+        <p id="prompt">Hello there! Welcome to this lyric quiz created exclusively for Apple Girl Zine subscribers. The category is: Apple (2024) by Charli XCX. Are you ready to begin?</p>
+        <input type="text" id="welcome_input">
+        <button id="start_button" onclick="start_quiz()">Start Quiz</button>
+
+        <!-- Question 1 -->
         <div id="question1" style="display: none;">
             <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
             <input type="text" id="q1_input">
             <button onclick="check_question1()">Submit</button>
         </div>
 
+        <!-- Question 2 -->
         <div id="question2" style="display: none;">
             <p>Question 2 of 3 (medium): What color did the apple turn?</p>
             <input type="text" id="q2_input">
             <button onclick="check_question2()">Submit</button>
         </div>
 
+        <!-- Question 3 -->
         <div id="question3" style="display: none;">
             <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
             <input type="text" id="q3_input">
             <button onclick="check_question3()">Submit</button>
         </div>
 
+        <!-- Final result -->
         <p id="result" style="display: none;"></p>
     </div>
 
     <script type="text/python">
         from browser import document, alert
 
-        total_score = 0  # Initiate total score
+        total_score = 0  # Initialize total score
 
         # Function to start the quiz
-        def start_quiz(ev):
+        def start_quiz():
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
                 document['question1'].style.display = 'block'
@@ -60,7 +66,7 @@
             else:
                 alert("Incorrect :(")
             document['question1'].style.display = 'none'
-            document['question2'].style.display = 'block'
+            document['question2'].style.display = 'block'  # Show question 2
 
         # Function to check question 2
         def check_question2():
@@ -72,7 +78,7 @@
             else:
                 alert("Incorrect :(")
             document['question2'].style.display = 'none'
-            document['question3'].style.display = 'block'
+            document['question3'].style.display = 'block'  # Show question 3
 
         # Function to check question 3
         def check_question3():
@@ -100,24 +106,20 @@
             document['question3'].style.display = 'none'
             show_result()
 
-        # Function to show the result based on the score
+        # Function to show the final result based on the score
         def show_result():
             result_output = ""
             if total_score > 3:
-                result_output = "Thank you for completing the quiz <3. Based on your results, you received a bonus score of {0}/3 and are permitted to DRIVE ALL NIGHT. Trop cool!".format(total_score)
+                result_output = f"Thank you for completing the quiz <3. Based on your results, you received a bonus score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Trop cool!"
             elif total_score == 3:
-                result_output = "Thank you for completing the quiz <3. Based on your results, you received a perfect score of {0}/3 and are permitted to DRIVE ALL NIGHT. Amazing!".format(total_score)
+                result_output = f"Thank you for completing the quiz <3. Based on your results, you received a perfect score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Amazing!"
             elif total_score == 2:
-                result_output = "Thank you for completing the quiz <3. Based on your results, you received a passing score of {0}/3 and are permitted to DRIVE ALL NIGHT. Yay!".format(total_score)
+                result_output = f"Thank you for completing the quiz <3. Based on your results, you received a passing score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Yay!"
             else:
-                result_output = "Thank you for completing the quiz <3. Based on your results, you received a failing score of {0}/3 and are not permitted to DRIVE ALL NIGHT. Try again next time!".format(total_score)
-
+                result_output = f"Thank you for completing the quiz <3. Based on your results, you received a failing score of {total_score}/3 and are not permitted to DRIVE ALL NIGHT. Try again next time!"
+            
             document['result'].text = result_output
             document['result'].style.display = 'block'
     </script>
-
-    <p id="prompt">Hello there! Welcome to this lyric quiz created exclusively for Apple Girl Zine subscribers. The category is: Apple (2024) by Charli XCX. Are you ready to begin?</p>
-    <input type="text" id="welcome_input">
-    <button id="start_button" onclick="start_quiz(event)">Start Quiz</button>
 </body>
 </html>
