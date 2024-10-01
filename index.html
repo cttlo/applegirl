@@ -34,12 +34,6 @@
             font-size: 1.5em; /* Larger result font */
             font-weight: normal;
         }
-
-        #feedback {
-            font-size: 1.2em;
-            color: #ff0000; /* Red color for feedback */
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body onload="brython()">
@@ -51,9 +45,6 @@
         <p id="prompt">Are you ready to begin?</p>
         <input type="text" id="welcome_input" placeholder="Type yes to start...">
         <p id="start_message"></p> <!-- Placeholder for the "Bye bye" message -->
-
-        <!-- Feedback message -->
-        <p id="feedback" style="display: none;"></p>
 
         <!-- Question 1 -->
         <div id="question1" style="display: none;">
@@ -84,7 +75,7 @@
     </div>
 
     <script type="text/python">
-        from browser import document
+        from browser import document, alert
 
         total_score = 0  # Initialize total score
 
@@ -99,27 +90,15 @@
             else:
                 document['start_message'].text = "Bye bye!"  # Show "Bye bye" message
 
-        # Function to display feedback
-        def show_feedback(message):
-            feedback_element = document['feedback']
-            feedback_element.text = message
-            feedback_element.style.display = 'block'  # Show the feedback
-
-        # Function to hide feedback
-        def hide_feedback():
-            feedback_element = document['feedback']
-            feedback_element.style.display = 'none'  # Hide the feedback
-
         # Function to check question 1
         def check_question1():
             global total_score
-            hide_feedback()  # Hide previous feedback
             question_1_input = document['q1_input'].value.strip().lower()
             if question_1_input == "no":
-                show_feedback("Correct!")
+                alert("Correct!")
                 total_score += 1
             else:
-                show_feedback("Incorrect :(")
+                alert("Incorrect :(")
             
             document['question1'].style.display = 'none'  # Hide Question 1
             document['question2'].style.display = 'block'  # Show Question 2
@@ -127,13 +106,12 @@
         # Function to check question 2
         def check_question2():
             global total_score
-            hide_feedback()  # Hide previous feedback
             question_2_input = document['q2_input'].value.strip().lower()
             if question_2_input in ["yellow and green", "yellow or green", "yellow green", "green yellow", "yellow", "green"]:
-                show_feedback("Correct!")
+                alert("Correct!")
                 total_score += 1
             else:
-                show_feedback("Incorrect :(")
+                alert("Incorrect :(")
             
             document['question2'].style.display = 'none'  # Hide Question 2
             document['question3'].style.display = 'block'  # Show Question 3
@@ -141,7 +119,6 @@
         # Function to check question 3
         def check_question3():
             global total_score
-            hide_feedback()  # Hide previous feedback
             question_3_input = document['q3_input'].value.strip().lower()
             accepted_responses = [
                 "from all the things passed down from all the apples coming before",
@@ -155,19 +132,18 @@
                 "apples coming before"
             ]
             if question_3_input in accepted_responses:
-                show_feedback("Correct!")
+                alert("Correct!")
                 total_score += 1
             elif question_3_input == "you think you just fell out of a coconut tree? you exist in the context of all in which you live and what came before you":
-                show_feedback("Ur so cheeky >;) Take an extra point!")
+                alert("Ur so cheeky >;) Take an extra point!")
                 total_score += 2
             else:
-                show_feedback("Incorrect :(")
+                alert("Incorrect :(")
             document['question3'].style.display = 'none'  # Hide Question 3
             show_result()
 
         # Function to show the final result based on the score
         def show_result():
-            hide_feedback()  # Hide feedback before showing result
             result_output = ""
             if total_score > 3:
                 result_output = f"Thank you for completing the quiz <3. Based on your results, you received a bonus score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Trop cool!"
