@@ -13,28 +13,24 @@
     <div id="quiz">
         <p id="prompt">Hello there! Welcome to this lyric quiz created exclusively for Apple Girl Zine subscribers. The category is: Apple (2024) by Charli XCX. Are you ready to begin?</p>
         <input type="text" id="welcome_input">
-        <button id="start_button" type="button" onclick="start_quiz()">Start Quiz</button>
         <p id="start_message"></p> <!-- Placeholder for the "Bye bye" message -->
 
         <!-- Question 1 -->
         <div id="question1" style="display: none;">
             <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
             <input type="text" id="q1_input">
-            <button type="button" onclick="check_question1()">Submit</button>
         </div>
 
         <!-- Question 2 -->
         <div id="question2" style="display: none;">
             <p>Question 2 of 3 (medium): What color did the apple turn?</p>
             <input type="text" id="q2_input">
-            <button type="button" onclick="check_question2()">Submit</button>
         </div>
 
         <!-- Question 3 -->
         <div id="question3" style="display: none;">
             <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
             <input type="text" id="q3_input">
-            <button type="button" onclick="check_question3()">Submit</button>
         </div>
 
         <!-- Final result -->
@@ -51,9 +47,7 @@
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
                 document['question1'].style.display = 'block'  # Show Question 1
-                document['welcome_input'].style.display = 'none'
-                document['start_button'].style.display = 'none'
-                document['start_message'].text = ""  # Clear any "Bye bye" message
+                document['welcome_input'].style.display = 'none'  # Hide welcome input
             else:
                 document['start_message'].text = "Bye bye!"  # Show "Bye bye" message under the button
 
