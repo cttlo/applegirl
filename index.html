@@ -18,23 +18,29 @@
         <!-- Question 1 -->
         <div id="question1" style="display: none;">
             <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
+            <p><em><press enter/return to submit></em></p>
             <input type="text" id="q1_input">
         </div>
 
         <!-- Question 2 -->
         <div id="question2" style="display: none;">
             <p>Question 2 of 3 (medium): What color did the apple turn?</p>
+            <p><em><press enter/return to submit></em></p>
             <input type="text" id="q2_input">
         </div>
 
         <!-- Question 3 -->
         <div id="question3" style="display: none;">
             <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
+            <p><em><press enter/return to submit></em></p>
             <input type="text" id="q3_input">
         </div>
 
         <!-- Final result -->
         <p id="result" style="display: none;"></p>
+
+        <!-- Credits -->
+        <p id="credits" style="display: none;">Quiz by Kyra Meier<br>Formatting by Charlotte Alarie</p>
     </div>
 
     <script type="text/python">
@@ -117,6 +123,7 @@
             
             document['result'].text = result_output
             document['result'].style.display = 'block'
+            document['credits'].style.display = 'block'  # Show the credits
 
         # Event listener to trigger start quiz or submit questions using Enter/Return key
         def handle_keydown(event, action):
