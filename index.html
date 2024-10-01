@@ -21,7 +21,6 @@
             <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
             <input type="text" id="q1_input">
             <button type="button" onclick="check_question1()">Submit</button>
-            <p id="q1_feedback"></p> <!-- Placeholder for feedback for Question 1 -->
         </div>
 
         <!-- Question 2 -->
@@ -29,7 +28,6 @@
             <p>Question 2 of 3 (medium): What color did the apple turn?</p>
             <input type="text" id="q2_input">
             <button type="button" onclick="check_question2()">Submit</button>
-            <p id="q2_feedback"></p> <!-- Placeholder for feedback for Question 2 -->
         </div>
 
         <!-- Question 3 -->
@@ -37,7 +35,6 @@
             <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
             <input type="text" id="q3_input">
             <button type="button" onclick="check_question3()">Submit</button>
-            <p id="q3_feedback"></p> <!-- Placeholder for feedback for Question 3 -->
         </div>
 
         <!-- Final result -->
@@ -45,7 +42,7 @@
     </div>
 
     <script type="text/python">
-        from browser import document
+        from browser import document, alert
 
         total_score = 0  # Initialize total score
 
@@ -67,20 +64,20 @@
             global total_score
             question_1_input = document['q1_input'].value.strip().lower()
             if question_1_input == "no":
-                document['q1_feedback'].text = "Correct!"
+                alert("Correct!")
                 total_score += 1
             else:
-                document['q1_feedback'].text = "Incorrect :("
+                alert("Incorrect :(")
 
         # Function to check question 2
         def check_question2():
             global total_score
             question_2_input = document['q2_input'].value.strip().lower()
             if question_2_input in ["yellow and green", "yellow or green", "yellow green", "green yellow", "yellow", "green"]:
-                document['q2_feedback'].text = "Correct!"
+                alert("Correct!")
                 total_score += 1
             else:
-                document['q2_feedback'].text = "Incorrect :("
+                alert("Incorrect :(")
 
         # Function to check question 3
         def check_question3():
@@ -98,13 +95,13 @@
                 "apples coming before"
             ]
             if question_3_input in accepted_responses:
-                document['q3_feedback'].text = "Correct!"
+                alert("Correct!")
                 total_score += 1
             elif question_3_input == "you think you just fell out of a coconut tree? you exist in the context of all in which you live and what came before you":
-                document['q3_feedback'].text = "Ur so cheeky >;) Take an extra point!"
+                alert("Ur so cheeky >;) Take an extra point!")
                 total_score += 2
             else:
-                document['q3_feedback'].text = "Incorrect :("
+                alert("Incorrect :(")
             show_result()
 
         # Function to show the final result based on the score
