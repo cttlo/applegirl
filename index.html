@@ -123,16 +123,29 @@
             document['result'].text = result_output
             document['result'].style.display = 'block'
 
-        # Event listener to trigger start quiz or submit questions using Enter/Return key
-        def handle_keydown(event, action):
+        # Add event listener to enable starting quiz by pressing Enter/Return
+        def handle_keydown(event):
             if event.keyCode == 13:  # 13 is the Enter key
-                action()
+                start_quiz()
+
+        # Add keydown event listeners for all inputs
+        def handle_keydown_q1(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question1()
+
+        def handle_keydown_q2(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question2()
+
+        def handle_keydown_q3(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question3()
 
         # Bind Enter key events to input fields
-        document['welcome_input'].bind('keydown', lambda e: handle_keydown(e, start_quiz))  # Bind Enter key for starting the quiz
-        document['q1_input'].bind('keydown', lambda e: handle_keydown(e, check_question1))   # Bind Enter key for Question 1
-        document['q2_input'].bind('keydown', lambda e: handle_keydown(e, check_question2))   # Bind Enter key for Question 2
-        document['q3_input'].bind('keydown', lambda e: handle_keydown(e, check_question3))   # Bind Enter key for Question 3
+        document['welcome_input'].bind('keydown', handle_keydown)  # Bind Enter key event to the welcome input field
+        document['q1_input'].bind('keydown', handle_keydown_q1)    # Bind Enter key event to Question 1 input field
+        document['q2_input'].bind('keydown', handle_keydown_q2)    # Bind Enter key event to Question 2 input field
+        document['q3_input'].bind('keydown', handle_keydown_q3)    # Bind Enter key event to Question 3 input field
     </script>
 </body>
 </html>
