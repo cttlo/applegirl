@@ -152,17 +152,23 @@
             result_output = ""
             if total_score > 3:
                 result_output = f"Thank you for completing the quiz <3. Based on your results, you received a bonus score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Trop cool!"
+                gif_output = '<iframe src="https://giphy.com/embed/l3vRgsqe79vhMHeJq" width="480" height="319" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cute-valentine-charli-xcx-l3vRgsqe79vhMHeJq">via GIPHY</a></p>'
             elif total_score == 3:
                 result_output = f"Thank you for completing the quiz <3. Based on your results, you received a perfect score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Amazing!"
+                gif_output = '<iframe src="https://giphy.com/embed/l0L2nLihNGfKTlUdkk" width="480" height="451" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/charlixcx-transparent-charli-xcx-l0L2nLihNGfKTlUdkk">via GIPHY</a></p>'
             elif total_score == 2:
                 result_output = f"Thank you for completing the quiz <3. Based on your results, you received a passing score of {total_score}/3 and are permitted to DRIVE ALL NIGHT. Yay!"
+                gif_output = '<iframe src="https://giphy.com/embed/jn91y50FioktQMlYqz" width="480" height="370" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/charlixcx-charli-xcx-claws-jn91y50FioktQMlYqz">via GIPHY</a></p>'
             else:
                 result_output = f"Thank you for completing the quiz <3. Based on your results, you received a failing score of {total_score}/3 and are not permitted to DRIVE ALL NIGHT. Try again next time!"
+                gif_output = '<iframe src="https://giphy.com/embed/fVXx8dLZwXrz7zTnX9" width="480" height="271" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/charlixcx-charli-xcx-caroline-polachek-new-shapes-fVXx8dLZwXrz7zTnX9">via GIPHY</a></p>'
             
             document['result'].text = result_output
             document['result'].style.display = 'block'
+            document['result_gif'].innerHTML = gif_output  # Insert the GIF HTML
+            document['result_gif'].style.display = 'block'
             document['credits'].style.display = 'block'  # Show the credits
-
+        
         # Event listener to trigger start quiz or submit questions using Enter/Return key
         def handle_keydown(event, action):
             if event.keyCode == 13:  # 13 is the Enter key
