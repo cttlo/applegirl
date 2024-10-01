@@ -9,11 +9,29 @@
     <style>
         body {
             font-family: Arial Narrow;
+            background-color: #8ACE00; /* Background color */
+            color: #FFFFFF; /* Font color */
         }
-
+        
         input[type="text"] {
             font-family: Arial Narrow;
-            font-size: 1em;
+            color: #FFFFFF; /* Text color inside input box */
+            background-color: #555555; /* Background color of input box */
+            border: 2px solid #FFFFFF; /* Border color of input box */
+            padding: 5px;
+            width: 300px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #CCCCCC; /* Placeholder text color */
+        }
+
+        h1, h2, p {
+            color: #FFFFFF; /* Ensure all text remains white */
+        }
+
+        em {
+            color: #CCCCCC; /* Slightly gray for emphasis text */
         }
     </style>
 </head>
