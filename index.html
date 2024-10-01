@@ -126,7 +126,24 @@
             if event.keyCode == 13:  # 13 is the Enter key
                 start_quiz()
 
-        document['welcome_input'].bind('keydown', handle_keydown)  # Bind Enter key event to the input field
+        # Add keydown event listeners for all inputs
+        def handle_keydown_q1(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question1()
+
+        def handle_keydown_q2(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question2()
+
+        def handle_keydown_q3(event):
+            if event.keyCode == 13:  # 13 is the Enter key
+                check_question3()
+
+        # Bind Enter key events to input fields
+        document['welcome_input'].bind('keydown', handle_keydown)  # Bind Enter key event to the welcome input field
+        document['q1_input'].bind('keydown', handle_keydown_q1)    # Bind Enter key event to Question 1 input field
+        document['q2_input'].bind('keydown', handle_keydown_q2)    # Bind Enter key event to Question 2 input field
+        document['q3_input'].bind('keydown', handle_keydown_q3)    # Bind Enter key event to Question 3 input field
     </script>
 </body>
 </html>
