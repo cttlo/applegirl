@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
     <title>Apple Girl Zine Lyric Quiz</title>
+    <!-- Add Brython library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
 </head>
 <body onload="brython()">
     <h1>Welcome to the Lyric Quiz for Apple Girl Zine Subscribers!</h1>
@@ -108,4 +109,16 @@
                 result_output = "Thank you for completing the quiz <3. Based on your results, you received a perfect score of {0}/3 and are permitted to DRIVE ALL NIGHT. Amazing!".format(total_score)
             elif total_score == 2:
                 result_output = "Thank you for completing the quiz <3. Based on your results, you received a passing score of {0}/3 and are permitted to DRIVE ALL NIGHT. Yay!".format(total_score)
-            else
+            else:
+                result_output = "Thank you for completing the quiz <3. Based on your results, you received a failing score of {0}/3 and are not permitted to DRIVE ALL NIGHT. Try again next time!".format(total_score)
+
+            document['result'].text = result_output
+            document['result'].style.display = 'block'
+
+    </script>
+
+    <p id="prompt">Hello there! Welcome to this lyric quiz created exclusively for Apple Girl Zine subscribers. The category is: Apple (2024) by Charli XCX. Are you ready to begin?</p>
+    <input type="text" id="welcome_input">
+    <button id="start_button" onclick="start_quiz(event)">Start Quiz</button>
+</body>
+</html>
