@@ -1,7 +1,111 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
+    <title>Apple Girl Zine Lyric Quiz</title>
+</head>
+<body onload="brython()">
+    <h1>Welcome to the Lyric Quiz for Apple Girl Zine Subscribers!</h1>
+    <p>Category: <strong>Apple (2024) by Charli XCX</strong></p>
+    <p id="welcome"></p>
+
+    <!-- Questions and input fields -->
+    <div id="quiz">
+        <div id="question1" style="display: none;">
+            <p>Question 1 of 3 (easy): Did the apple fall far from the tree? (answer yes or no)</p>
+            <input type="text" id="q1_input">
+            <button onclick="check_question1()">Submit</button>
+        </div>
+
+        <div id="question2" style="display: none;">
+            <p>Question 2 of 3 (medium): What color did the apple turn?</p>
+            <input type="text" id="q2_input">
+            <button onclick="check_question2()">Submit</button>
+        </div>
+
+        <div id="question3" style="display: none;">
+            <p>Question 3 of 3 (hard): Why is the apple rotten right to the core?</p>
+            <input type="text" id="q3_input">
+            <button onclick="check_question3()">Submit</button>
+        </div>
+
+        <p id="result" style="display: none;"></p>
+    </div>
+
+    <script type="text/python">
+        from browser import document, alert
+
+        total_score = 0  # Initiate total score
+
+        # Function to start the quiz
+        def start_quiz(ev):
+            welcome_input = document['welcome_input'].value.strip().lower()
+            if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
+                document['question1'].style.display = 'block'
+                document['welcome_input'].style.display = 'none'
+                document['start_button'].style.display = 'none'
+            else:
+                alert("Bye bye!")
+
+        # Function to check question 1
+        def check_question1():
+            global total_score
+            question_1_input = document['q1_input'].value.strip().lower()
+            if question_1_input == "no":
+                alert("Correct!")
+                total_score += 1
+            else:
+                alert("Incorrect :(")
+            document['question1'].style.display = 'none'
+            document['question2'].style.display = 'block'
+
+        # Function to check question 2
+        def check_question2():
+            global total_score
+            question_2_input = document['q2_input'].value.strip().lower()
+            if question_2_input in ["yellow and green", "yellow or green", "yellow green", "green yellow", "yellow", "green"]:
+                alert("Correct!")
+                total_score += 1
+            else:
+                alert("Incorrect :(")
+            document['question2'].style.display = 'none'
+            document['question3'].style.display = 'block'
+
+        # Function to check question 3
+        def check_question3():
+            global total_score
+            question_3_input = document['q3_input'].value.strip().lower()
+            accepted_responses = [
+                "from all the things passed down from all the apples coming before",
+                "from all the things passed down",
+                "all the things passed down",
+                "the things passed down",
+                "things passed down",
+                "from all the apples coming before",
+                "all the apples coming before",
+                "the apples coming before",
+                "apples coming before"
+            ]
+            if question_3_input in accepted_responses:
+                alert("Correct!")
+                total_score += 1
+            elif question_3_input == "you think you just fell out of a coconut tree? you exist in the context of all in which you live and what came before you":
+                alert("Ur so cheeky >;) Take an extra point!")
+                total_score += 2
+            else:
+                alert("Incorrect :(")
+            document['question3'].style.display = 'none'
+            show_result()
+
+        # Function to show the result based on the score
+        def show_result():
+            result_output = ""
+            if total_score > 3:
+                result_output = "Thank you for completing the quiz <3. Based on your results, you received a bonus score of {0}/3 and are permitted to DRIVE ALL NIGHT. Trop cool!".format(total_score)
+            elif total_score == 3:
+                result_output = "Thank you for completing the quiz <3. Based on your results, you received a perfect score of {0}/3 and are permitted to DRIVE ALL NIGHT. Amazing!".format(total_score)
+            elif total_score == 2:
+                result_output = "Thank you for completing the quiz <3. Based on your results, you received a passing score of {0}/3 and are permitted to DRIVE ALL NIGHT. Yay!".format(total_score)
+            else
