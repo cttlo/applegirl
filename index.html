@@ -9,7 +9,6 @@
 <body onload="brython()">
     <h1>Welcome to the APPLE GIRL ZINE Lyric Quiz!</h1>
     <h2>The category is: Apple (2024) by Charli XCX.</h2>
-    <p>Quiz by Kyra Meier<br>Formatting by Charlotte Alarie</p>
 
     <div id="quiz">
         <p id="prompt"><br>Are you ready to begin?</p>
@@ -121,6 +120,8 @@
             document['result'].text = result_output
             document['result'].style.display = 'block'
             document['credits'].style.display = 'block'  # Show the credits
+
+        credits = print(Quiz by Kyra Meier/nFormatting by Charlotte Alarie)
 
         # Event listener to trigger start quiz or submit questions using Enter/Return key
         def handle_keydown(event, action):
