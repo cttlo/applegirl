@@ -33,6 +33,12 @@
         em {
             color: #FFFFFF; /* Slightly gray for emphasis text */
         }
+
+        /* Styling the result output */
+        #result {
+            font-size: 1.5em; /* Make the font slightly larger */
+            font-weight: normal; /* Ensure the text is not bolded */
+        }
     </style>
 </head>
 <body onload="brython()">
@@ -81,6 +87,7 @@
         def start_quiz():
             welcome_input = document['welcome_input'].value.strip().lower()
             if welcome_input.startswith("y"):  # Allow "yass", "yes", "ya", etc.
+                document['prompt'].style.display = 'none'  # Hide the prompt
                 document['question1'].style.display = 'block'  # Show Question 1
                 document['welcome_input'].style.display = 'none'  # Hide welcome input
             else:
